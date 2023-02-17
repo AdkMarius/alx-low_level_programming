@@ -9,7 +9,8 @@
 int main(void)
 {
 	char c;
-
-	putchar(tolower(c));
+	
+	for (c = 97; c < 123; c++)
+		putchar(c);
 	return (0);
 }
