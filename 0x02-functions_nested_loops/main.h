@@ -7,3 +7,4 @@ int print_sign(int n);
 void print_to_98(int n);
 int add(int a, int b);
 void times_table(void);
+int _abs(int);
