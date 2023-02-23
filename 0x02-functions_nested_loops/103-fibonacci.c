@@ -4,7 +4,7 @@
 /**
  * main - check the code.
  *
- * Return 0.
+ * Return: Always 0.
  */
 int main(void)
 {
@@ -16,9 +16,8 @@ int main(void)
 	for (i = 2; i < 100; i++)
 		A[i] = A[i - 1] + A[i - 2];
 	i = 0;
-	do
-	{
-		if(A[i] % 2 == 0)
+	do {
+		if (A[i] % 2 == 0)
 			sum = sum + A[i];
 		i++;
 	} while (A[i] < 4000000);
