@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - check the code
+ * rev_string - check the code
  * @s: An string input
  * Return: Nothing
  */
