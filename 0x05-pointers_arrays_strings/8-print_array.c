@@ -4,7 +4,7 @@
 /**
  * print_array - check the code
  * @a: A pointer on integer input
- * @: An integer input
+ * @n: An integer input
  * Return: Nothing
  */
 void print_array(int *a, int n)
