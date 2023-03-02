@@ -2,9 +2,9 @@
 #include <string.h>
 
 /**
- * reverse_array: check the code
+ * reverse_array - check the code
  * @a: A pointer to an integer
- * @n; size of array of integers
+ * @n: size of array of integers
  *
  * Return: Nothing
  */
