@@ -20,7 +20,8 @@ char *string_toupper(char *s)
 	return (s);
 }
 
-/**check_char: check the code
+/**
+ * check_char: check the code
  * @c: A char input
  *
  * Return: 0 or 1
