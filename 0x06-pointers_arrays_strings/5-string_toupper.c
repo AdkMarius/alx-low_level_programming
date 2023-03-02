@@ -3,7 +3,7 @@
 #include <string.h>
 
 /**
- * string_toupper: check the code
+ * string_toupper - check the code
  * @s: An array of char
  *
  * Return: An array of char
@@ -21,7 +21,7 @@ char *string_toupper(char *s)
 }
 
 /**
- * check_char: check the code
+ * check_char - check the code
  * @c: A char input
  *
  * Return: 0 or 1
