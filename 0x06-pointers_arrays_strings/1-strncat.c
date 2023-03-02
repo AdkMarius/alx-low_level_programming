@@ -2,9 +2,10 @@
 #include <string.h>
 
 /**
- * _strncat: check the code
+ * _strncat - check the code
  * @dest: A pointer to a string input
  * @src: Apointer to a string input
+ *
  * @n: An integer input
  * Return: A pointer to a string
  */
