@@ -2,10 +2,12 @@
 #include <string.h>
 
 /**
- * _strncpy: check the code
+ * _strncpy - check the code
  * @dest: A pointer to a string input
  * @src: A pointer to a string input
  * @n: An integer input
+ *
+ * Return: An array string
  */
 char *_strncpy(char *dest, char *src, int n)
 {
