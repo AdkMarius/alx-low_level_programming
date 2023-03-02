@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 /**
- * cap_string: check the code
+ * cap_string - check the code
  * @s: An array of string
  *
  * Return: An array of string
@@ -18,7 +18,7 @@ char *cap_string(char *s)
 		{
 			if (s[i] == tab[j])
 			{
-				if((s[i + 1] >= 'a' && s[i + 1] <= 'z') || (s[i + 1] >= 'A' && s[i + 1] <= 'Z'))
+				if ((s[i + 1] >= 'a' && s[i + 1] <= 'z') || (s[i + 1] >= 'A' && s[i + 1] <= 'Z'))
 					s[i + 1] = toupper(s[i + 1]);
 				break;
 			}
