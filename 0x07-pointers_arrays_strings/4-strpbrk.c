@@ -14,6 +14,6 @@ char *_strpbrk(char *s, char *accept)
 	
 	result = strpbrk(s, accept);
 	if (result != NULL)
-		return result;
+		return (result);
 	return (NULL);
 }
