@@ -12,7 +12,7 @@ int _sqrt_recursion(int n)
 }
 
 /**
- * halper - check the code
+ * halp - check the code
  * @c: input
  * @i: input
  *
