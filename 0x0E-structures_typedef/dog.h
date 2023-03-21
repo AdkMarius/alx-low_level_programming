@@ -1,6 +1,12 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
+/**
+ * struct dog - structure definition of a dog
+ * @name: string
+ * @age: integer
+ * @owner: string
+ */
 struct dog
 {
 	char *name;
