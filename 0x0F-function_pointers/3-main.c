@@ -24,19 +24,16 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
-	if (atoi(argv[1]) != 0 && atoi(argv[3]) != 0)
+	ptr = get_op_func(argv[2]);
+	if (ptr != NULL)
 	{
-		if ((argv[2][0] == '/' || argv[2][0] == '%') && atoi(argv[3]) == 0)
-		{
-			printf("Error\n");
-			exit(100);
-		}
-		ptr = get_op_func(argv[2]);
-		if (ptr != NULL)
-		{
-			result = ptr(atoi(argv[1]), atoi(argv[3]));
-			printf("%d\n", result);
-		}
+		result = ptr(atoi(argv[1]), atoi(argv[3]));
+		printf("%d\n", result);
+	}
+	else
+	{
+		printf("Error\n");
+		exit(99);
 	}
 	return (0);
 }
