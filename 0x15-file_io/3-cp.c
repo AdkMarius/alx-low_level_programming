@@ -1,77 +1,51 @@
 #include "main.h"
 
-/**
- * copy_from_file_to_file - copy the contain of file into another file
- * @filenameFirstFile: file which contains the text
- * @filenameSecondFile: file which receive the text
- *
- * Return: 1 if succeeded
- */
-int copy_from_file_to_file(const char *filenameFirstFile, const char *filenameSecondFile)
-{
-	int fd;
-	ssize_t nread, nwrite;
-	char *buffer;
-
-	if (filenameFirstFile == NULL)
-		error_on_file(filenameFirstFile, 98);
-
-	fd = open(filenameFirstFile, O_RDONLY);
-	if (fd == -1)
-		error_on_file(filenameFirstFile, 98);
-
-	buffer = malloc(sizeof(char) * 1024);
-	if (buffer == NULL)
-	{
-		free(buffer);
-		return (-1);
-	}
-	nread = read(fd, buffer, 1024);
-	if (nread == -1)
-		error_on_file(filenameFirstFile, 98);
-
-	fd_close(fd);
-
-	fd = open(filenameSecondFile, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (fd == -1)
-		error_on_file(filenameSecondFile, 99);
-
-	nwrite = write(fd, buffer, nread);
-	if (nwrite == -1 || nwrite != nread)
-		error_on_file(filenameSecondFile, 99);
-	free(buffer);
-
-	fd_close(fd);
-	return (1);
-}
+#define MAXSIZE 1204
+#define SE STDERR_FILENO
 
 /**
- * error_on_file - print text error when file doesn't exist, can't readed or witten
- * @file: name of file
- * @error: code error
- *
- * Return: Nothing
+ * main - create the copy bash script
+ * @ac: argument count
+ * @av: arguments as strings
+ * Return: 0
  */
-void error_on_file(const char *file, int error)
+int main(int ac, char *av[])
 {
-	dprintf(2, "Error: Can't read from file %s\n", file);
-	exit(error);
-}
+	int input_fd, output_fd, istatus, ostatus;
+	char buf[MAXSIZE];
+	mode_t mode;
 
-/**
- * fd_close - close the file descriptor
- * @fd: value of the file descriptor
- *
- * Return: Nothing
- */
-void fd_close(int fd)
-{
-	int nclose;
-
-	nclose = close(fd);
-	if (nclose == -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
+	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	if (ac != 3)
+		dprintf(SE, "Usage: cp file_from file_to\n"), exit(97);
+	input_fd = open(av[1], O_RDONLY);
+	if (input_fd == -1)
+		dprintf(SE, "Error: Can't read from file %s\n", av[1]), exit(98);
+	output_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+	if (output_fd == -1)
+		dprintf(SE, "Error: Can't write to %s\n", av[2]), exit(99);
+	do {
+		istatus = read(input_fd, buf, MAXSIZE);
+		if (istatus == -1)
+		{
+			dprintf(SE, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
+		}
+		if (istatus > 0)
+		{
+			ostatus = write(output_fd, buf, (ssize_t) istatus);
+			if (ostatus == -1)
+			{
+				dprintf(SE, "Error: Can't write to %s\n", av[2]);
+				exit(99);
+			}
+		}
+	} while (istatus > 0);
+	istatus = close(input_fd);
+	if (istatus == -1)
+		dprintf(SE, "Error: Can't close fd %d\n", input_fd), exit(100);
+	ostatus = close(output_fd);
+	if (ostatus == -1)
+		dprintf(SE, "Error: Can't close fd %d\n", output_fd), exit(100);
+	return (0);
 }
